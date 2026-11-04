@@ -70,31 +70,72 @@ The UI uses a 4-button control scheme (B1–B4) that changes functionality depen
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Normal_Idle : Default State / Display Off
-    
-    Normal_Idle --> Temperatures : Press B2
-    Normal_Idle --> Humidity : Press B3
-    Normal_Idle --> Passcode_Entry : Press B4
-    Normal_Idle --> Normal_Idle : Press B1 (Power Down Sensors)
+    [*] --> Normal_Idle : Boot / Screen Timeout
 
-    Temperatures --> Temp_Legend : Press B1 (Legend)
-    Temp_Legend --> Temperatures : Press B1 (Back)
-    Temperatures --> History_View : Press B3 (7-Day Log)
-    History_View --> Temperatures : Press B3 (Back)
-    Temperatures --> Normal_Idle : Press B4 (Exit)
+    state "Normal (Display Off)" as Normal_Idle
+    state "Temperatures Screen" as Temperatures
+    state "Temp Legend" as Temp_Legend
+    state "7-Day History View" as History_View
+    state "Humidity Screen" as Humidity
+    state "Humidity Settings" as Hum_Settings
+    state "Humidity Records (24h)" as Hum_Records
+    state "Passcode Entry" as Passcode
+    state "Settings Menu" as Settings_Menu
+    state "Secret Admin Menu" as Secret_Menu
+    state "Set Units (°C / °F)" as Set_Units
+    state "Set Clock Time" as Set_Time
 
-    Humidity --> Humidity_Settings : Press B1 (Edit Thresholds)
-    Humidity --> Humidity_Records : Press B2 (24-Hour Log)
-    Humidity --> Normal_Idle : Press B4 (Exit)
-    Humidity_Settings --> Humidity : Save / Exit
-    Humidity_Records --> Humidity : Press B4 (Back)
+    %% Normal Idle Transitions
+    Normal_Idle --> Normal_Idle : B1: Power Off Sensors & LEDs
+    Normal_Idle --> Temperatures : B2: View Temperatures
+    Normal_Idle --> Humidity : B3: View Humidity
+    Normal_Idle --> Passcode : B4: Settings Passcode
 
-    Passcode_Entry --> Settings_Menu : Standard PIN
-    Passcode_Entry --> Secret_Menu : Admin PIN
-    Settings_Menu --> Set_Time : Option 2
-    Settings_Menu --> Set_Units : Option 1
-    Settings_Menu --> Normal_Idle : Exit
-    Secret_Menu --> Normal_Idle : Exit
+    %% Temperature Menu
+    Temperatures --> Temp_Legend : B1: Open Column Legend
+    Temperatures --> Temperatures : B2: Remeasure & Refresh
+    Temperatures --> History_View : B3: View 7-Day Log
+    Temperatures --> Normal_Idle : B4: Exit (Display Off)
+    Temp_Legend --> Temperatures : B1: Back to Temps
+
+    %% History View
+    History_View --> History_View : B1: Older Day / B2: Newer Day
+    History_View --> Temperatures : B3: Back to Temps
+    History_View --> Normal_Idle : B4: Exit (Display Off)
+
+    %% Humidity Menu
+    Humidity --> Hum_Settings : B1: Edit Threshold & Mode
+    Humidity --> Hum_Records : B2: View 24-Hour Log
+    Humidity --> Humidity : B3: Refresh Readings
+    Humidity --> Normal_Idle : B4: Exit (Display Off)
+
+    %% Humidity Sub-screens
+    Hum_Records --> Hum_Records : B1: +6h Ahead / B2: -6h Back
+    Hum_Records --> Humidity : B4: Back to Humidity
+    Hum_Settings --> Hum_Settings : B1: Down / B2: Up / B3: Next Field
+    Hum_Settings --> Humidity : B1 or B2 on 'Save': Apply Changes
+    Hum_Settings --> Humidity : B4: Cancel without Saving
+
+    %% Passcode Entry & Admin Menus
+    Passcode --> Passcode : B1-B4: Enter 6-Digit PIN
+    Passcode --> Settings_Menu : User PIN Match
+    Passcode --> Secret_Menu : Admin PIN Match
+    Passcode --> Passcode : Incorrect PIN (Reset)
+
+    Secret_Menu --> Secret_Menu : B1: Re-arm Sensors & LEDs
+    Secret_Menu --> Normal_Idle : B4: Exit (Display Off)
+
+    %% Settings Sub-screens
+    Settings_Menu --> Set_Units : B1: Change Units
+    Settings_Menu --> Set_Time : B2: Set Clock Time
+    Settings_Menu --> Normal_Idle : B4: Exit (Display Off)
+
+    Set_Units --> Set_Units : B1: Toggle °C / °F
+    Set_Units --> Settings_Menu : B3 or B4: Back to Menu
+
+    Set_Time --> Set_Time : B1: Decrement / B2: Increment / B3: Next Field
+    Set_Time --> Settings_Menu : B1 or B2 on 'Save': Write to RTC
+    Set_Time --> Settings_Menu : B4: Cancel without Saving
 ```
 
 ---
