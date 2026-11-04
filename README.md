@@ -205,13 +205,26 @@ stateDiagram-v2
 
 ## System Interface & Live Display
 
-Here is the 20x4 character LCD running real-time views:
+Real-time views running on the 20x4 character LCD:
 
-### LCD Humidity Screen (Display temperature, humidity, and settings)
-<img src="assets/humidity_display.jpg" width="380" alt="LCD Humidity Screen" />
+### 1. Temperature Overview Screen
+<img src="assets/temperature_display.jpg" width="400" alt="LCD Temperature Screen" />
 
-### LCD Temperature Screen (decimal points are omitted to maximize space, values are in F to the precision of 0.1)
-<img src="assets/temperature_display.jpg" width="380" alt="LCD Temperature Screen" />
+* **Display Data:** Current, daily high, and daily low temperatures across 5 zones (Front, Back, Hall, Room, Light).
+* **Display Optimization:** To fit 5 zones across a 20-character display line, temperatures are displayed multiplied by 10 (e.g., `724` = `72.4°F`). This preserves 0.1° precision while eliminating decimal points to conserve screen space.
 
-### LCD Temperature History Screen (decimal points are omitted, High/Low data for the day)
-<img src="assets/temperature_history.jpg" width="380" alt="LCD Temperature History Screen" />
+---
+
+### 2. Humidity & Relay Control Screen
+<img src="assets/humidity_display.jpg" width="400" alt="LCD Humidity Screen" />
+
+* **Display Data:** Live temperature and relative humidity from both DHT22 sensors (Light and Door zones).
+* **System State:** Shows active operating mode (`AUTO` / `ON` / `OFF`) and the target relay shut-off threshold (e.g., `OFF AT 50%`).
+
+---
+
+### 3. 7-Day Temperature History Screen
+<img src="assets/temperature_history.jpg" width="400" alt="LCD Temperature History Screen" />
+
+* **Display Data:** Shows historical high and low values for all 5 zones stepping back day-by-day.
+* **Storage:** Data is archived at midnight to local flash memory (`history.txt`) and read directly back into the UI.
