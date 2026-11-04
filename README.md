@@ -168,7 +168,10 @@ stateDiagram-v2
 ├── temperature_sensor_IDs.txt      # ROM hex addresses of DS18B20 sensors in display order
 ├── secret.txt                      # Passwords to access both settings pages
 ├── history.txt                     # File for storage of last 7 days of temp data
-└── README.md                       # Project documentation
+├── README.md                       # Project documentation
+└── assets/
+    ├── humidity_display.jpg        # Showcase of LCD screen
+    └── temperature_display.jpg     # Showcase of LCD screen
 ```
 
 ### Module Responsibilities
@@ -200,9 +203,5 @@ stateDiagram-v2
 ---
 
 ## Hardware Build & Photos
-
-*(Place real photos of your breadboard/wiring, enclosure, and LCD screens here)*
-
-| Enclosure / Wiring | LCD Main Screen |
-| :---: | :---: |
-| ![Hardware Wiring](docs/images/hardware.jpg) | ![LCD Screen](docs/images/lcd_display.jpg) |
+<img src="assets/humidity_display.jpg" width="380" alt="LCD Humidity Screen" />
+<img src="assets/temperature_display.jpg" width="380" alt="LCD Temperature Screen" />
