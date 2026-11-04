@@ -203,7 +203,15 @@ stateDiagram-v2
 
 ---
 
-## Hardware Build & Photos
+## System Interface & Live Display
+
+Here is the 20x4 character LCD running real-time views:
+
+### LCD Humidity Screen (Display temperature, humidity, and settings)
 <img src="assets/humidity_display.jpg" width="380" alt="LCD Humidity Screen" />
+
+### LCD Temperature Screen (decimal points are omitted to maximize space, values are in F to the precision of 0.1)
 <img src="assets/temperature_display.jpg" width="380" alt="LCD Temperature Screen" />
+
+### LCD Temperature History Screen (decimal points are omitted, High/Low data for the day)
 <img src="assets/temperature_history.jpg" width="380" alt="LCD Temperature History Screen" />
