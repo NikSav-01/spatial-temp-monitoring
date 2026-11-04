@@ -171,6 +171,7 @@ stateDiagram-v2
 ├── README.md                       # Project documentation
 └── assets/
     ├── humidity_display.jpg        # Showcase of LCD screen
+    ├── temperature_history.jpg     # Showcase of LCD screen
     └── temperature_display.jpg     # Showcase of LCD screen
 ```
 
@@ -205,3 +206,4 @@ stateDiagram-v2
 ## Hardware Build & Photos
 <img src="assets/humidity_display.jpg" width="380" alt="LCD Humidity Screen" />
 <img src="assets/temperature_display.jpg" width="380" alt="LCD Temperature Screen" />
+<img src="assets/temperature_history.jpg" width="380" alt="LCD Temperature History Screen" />
