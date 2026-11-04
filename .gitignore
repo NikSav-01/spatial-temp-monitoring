@@ -1,0 +1,13 @@
+# Credentials & sensitive data
+secret.txt
+
+# Dynamic logs and runtime state
+history.txt
+log.txt
+
+# Python / IDE cache files
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+.DS_Store
