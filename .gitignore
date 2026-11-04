@@ -1,5 +1,5 @@
 # Credentials & sensitive data
-secret.txt
+secret.txt.example
 
 # Dynamic logs and runtime state
 history.txt
