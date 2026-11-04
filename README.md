@@ -166,6 +166,8 @@ stateDiagram-v2
 ├── sensors.py                      # Hardware communication (1-Wire & DHT22 reading)
 ├── storage.py                      # Flash memory persistence for history and passwords
 ├── temperature_sensor_IDs.txt      # ROM hex addresses of DS18B20 sensors in display order
+├── secret.txt                      # Passwords to access both settings pages
+├── history.txt                     # File for storage of last 7 days of temp data
 └── README.md                       # Project documentation
 ```
 
